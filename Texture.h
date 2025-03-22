@@ -4,6 +4,7 @@
 #include "irrlicht.h"
 #include "IrrManagers.h"
 #include "Vector2D.h"
+#include "Vector4D.h"
 
 class Texture {
 public:
@@ -21,6 +22,7 @@ public:
     void createEmpty(const Vector2D& size);
     bool append(const Texture& tex, const Vector2D& pos); // Copies texture to another
     bool appendFromFile(std::string filePath, const Vector2D& pos); // Copies texture to another
+    Vector4D getPixel(const Vector2D& pos);
 
     bool doAppend(irr::video::IImage* img, vector2di pos);
 

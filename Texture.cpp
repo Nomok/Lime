@@ -64,6 +64,17 @@ bool Texture::appendFromFile(std::string filePath, const Vector2D& pos) {
 	return doAppend(img, vector2di(pos.x, pos.y));
 }
 
+Vector4D Texture::getPixel(const Vector2D& pos) {
+	if (!texture) return Vector4D();
+
+	IImage* img = texToImg(texture);
+	if (!img) return Vector4D();
+
+	SColor pCol = img->getPixel(pos.x, pos.y);
+
+	return Vector4D(pCol.getRed(), pCol.getGreen(), pCol.getBlue(), pCol.getAlpha());
+}
+
 bool Texture::doAppend(irr::video::IImage* img, vector2di pos) {
 	if (!texture || !img) return false;
 
@@ -106,5 +117,5 @@ void bindTexture() {
 	bind_type["append"] = &Texture::append;
 	bind_type["appendFromFile"] = &Texture::appendFromFile;
 	bind_type["clear"] = &Texture::createEmpty;
-
+	bind_type["getPixel"] = &Texture::getPixel;
 }
