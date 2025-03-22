@@ -677,7 +677,7 @@ void IrrHandling::runEventTasks() {
 				if (SonPacketReceived.valid()) {
 					sol::table t = lua->create_table();
 					t[1] = event.channelID;
-					t[2] = Packet(event.packet, event.peer->connectID);
+					t[2] = Packet(event.packet, event.peer->incomingSessionID);
 
 					addLuaTask(SonPacketReceived, t);
 				}

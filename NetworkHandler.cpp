@@ -152,7 +152,7 @@ void netBodyServer(NetworkHandler* n, IrrHandling* m) {
 			continue;
 		}
 
-		if (n->getPeer()) {
+		if (n->getPeer() && n->getHost()) {
 			lock.lock();
 			if (enet_host_service(n->getHost(), &event, 1000) > 0)
 				m->addEventTask(true, event);
