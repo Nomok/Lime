@@ -1,6 +1,6 @@
 #include "Hitbox.h"
 
-Hitbox::Hitbox(int rad, int h) {
+Hitbox::Hitbox(float rad, float h) {
 	radius = rad;
 	height = h;
 	lod = 1;

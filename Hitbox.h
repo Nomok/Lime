@@ -27,7 +27,7 @@ public:
     irr::scene::ISceneNode* getNode() const override { return holder; }
 
     Hitbox();
-    Hitbox(int rad, int h);
+    Hitbox(float rad, float h);
     Hitbox(const Hitbox& other);
 
     Vector3D getPosition();
