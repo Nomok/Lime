@@ -70,7 +70,7 @@ void Empty::setDebug(bool visible) {
 	if (emp) {
 		if (visible && !d)
 			d = new DebugSceneNode(emp, smgr, 0, DebugType::EMPTY);
-		else
+		else if (d)
 			d->remove();
 	}
 }
