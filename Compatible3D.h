@@ -39,6 +39,12 @@ public:
         irr::core::vector3df scale = node->getAbsoluteTransformation().getScale();
         return Vector3D(scale.X, scale.Y, scale.Z);
     }
+
+    void updateAbsPos() {
+        if (!getNode()) return;
+
+        getNode()->updateAbsolutePosition();
+    }
 };
 
 inline void bindCompatible3D() {
@@ -47,4 +53,5 @@ inline void bindCompatible3D() {
     bind_type["getAbsolutePosition"] = &Compatible3D::getAbsPos;
     bind_type["getAbsoluteRotation"] = &Compatible3D::getAbsRot;
     bind_type["getAbsoluteScale"] = &Compatible3D::getAbsScale;
+    bind_type["updateAbsolutePosition"] = &Compatible3D::updateAbsPos;
 }
