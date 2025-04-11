@@ -25,7 +25,7 @@ public:
     Vector3D rotate(const Vector3D& rot = Vector3D(0, 0, 0)) const;
     Vector3D deg() const;
     Vector3D rad() const;
-    float angle(const Vector3D& other = Vector3D(0, 0, 0)) const;
+    Vector3D angle(const Vector3D& other = Vector3D(0, 0, 0)) const;
 
     bool operator==(const Vector3D& other) const;
     bool operator!=(const Vector3D& other) const;

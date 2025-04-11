@@ -103,17 +103,22 @@ Vector3D Vector3D::rad() const {
 }
 
 // Angle between vectors
-float Vector3D::angle(const Vector3D& other) const {
-    float thisDot = dot(other);
-    float lenProduct = length() * other.length();
+Vector3D Vector3D::angle(const Vector3D& other) const {
+    float RAD2DEG = 180.0f / static_cast<float>(PI);
 
-    if (lenProduct == 0) {
-        return 0.0f;
+    Vector3D direction = other - *this;
+
+    if (direction.length() == 0.0f) {
+        return Vector3D(0.0f, 0.0f, 0.0f);
     }
 
-    float cosTheta = thisDot / lenProduct;
-    cosTheta = std::fmax(-1.0f, std::fmin(1.0f, cosTheta));
-    return std::acos(cosTheta);
+    direction = direction.normalize();
+
+    float yaw = std::atan2(direction.x, direction.z);
+    float pitch = std::atan2(-direction.y, std::sqrt(direction.x * direction.x + direction.z * direction.z));
+    float roll = 0.0f;
+
+    return Vector3D(pitch * RAD2DEG, yaw * RAD2DEG, roll);
 }
 
 // Equality operators
