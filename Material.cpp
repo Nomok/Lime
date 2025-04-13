@@ -5,7 +5,7 @@ Material::Material() {
 }
 
 Material::Material(const Material& other) {
-    mat = other.mat;
+    mat = SMaterial(other.mat);
 }
 
 Material::Material(Texture& tex) {
