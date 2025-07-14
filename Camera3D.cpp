@@ -36,7 +36,7 @@ void Camera3D::destroy() {
     }
     if (forwardChild) forwardChild->remove();
     if (leftChild) leftChild->remove();
-    if (d != nullptr) d->remove();
+    // if (d) d->remove();
     if (camera) camera->remove();
     camera = nullptr;
 }
