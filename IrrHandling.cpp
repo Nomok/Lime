@@ -274,10 +274,10 @@ void IrrHandling::appLoop() {
 
 		renderedGUI = false;
 
-		/*
+		// Rounding issue with FPS
 		f32 frameTime = device->getTimer()->getTime() - now;
 		if (frameTime < frameDur)
-			device->sleep((frameDur - frameTime) / 2.0);*/
+			device->sleep((frameDur - frameTime) / 2.0);
 
 		irrHandler->runEventTasks();
 		irrHandler->runLuaTasks();
