@@ -81,15 +81,21 @@ private:
     template<typename... Args>
     void callLuaFunction(const std::string& tableName, const std::string& functionName, Args&&... args)
     {
-        sol::optional<sol::function> func = (*lua)[tableName][functionName];
-        if (func && (*lua)[tableName][functionName].get_type() == sol::type::function)
+        sol::object obj = (*lua)[tableName][functionName];
+        if (obj.get_type() == sol::type::function)
         {
-            try {
-                func.value()(std::forward<Args>(args)...);
-            }
-            catch (const sol::error& e) {
-                std::cerr << "Error calling " << tableName << "." << functionName << ": " << e.what() << std::endl;
+            sol::protected_function func = obj.as<sol::protected_function>();
+            sol::protected_function_result result = func(std::forward<Args>(args)...);
+            if (!result.valid()) {
+                sol::error err = result;
+                dConsole.sendMsg(std::string(err.what()).c_str(), MESSAGE_TYPE::WARNING);
             }
         }
+        else {
+            // Uncommenting this prints errors for things like Input.OnMouseMove etc.
+            //std::string out = "Function " + tableName + "." + functionName + " not found or callable.";
+            //dConsole.sendMsg(out.c_str(), MESSAGE_TYPE::WARNING);
+        }
     }
+
 };
