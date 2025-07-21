@@ -293,10 +293,11 @@ void IrrHandling::appLoop() {
 		end();
 }
 
-void IrrHandling::testLuaFunc(sol::function f) {
+void IrrHandling::testLuaFunc(sol::object f) {
 	try {
 		if (f.get_type() == sol::type::function) {
-			sol::protected_function_result result = f();
+			sol::protected_function g = f.as<sol::protected_function>();
+			sol::protected_function_result result = g();
 			if (!result.valid())
 			{
 				sol::error err = result;
