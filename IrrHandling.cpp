@@ -297,7 +297,7 @@ void IrrHandling::testLuaFunc(sol::object f) {
 	try {
 		if (f.get_type() == sol::type::function) {
 			sol::protected_function g = f.as<sol::protected_function>();
-			sol::protected_function_result result = g();
+			sol::protected_function_result result = g(); // Doing Mesh:load(path) on its own will crash here.
 			if (!result.valid())
 			{
 				sol::error err = result;

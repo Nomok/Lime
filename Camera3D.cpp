@@ -2,6 +2,12 @@
 
 Camera3D::Camera3D() {
     camera = createCamera();
+
+    if (mainCamera)
+        smgr->setActiveCamera(mainCamera);
+    else
+        setActive();
+
     camera->grab();
 }
 
@@ -21,11 +27,6 @@ irr::scene::ICameraSceneNode* Camera3D::createCamera() {
 
     cam->addChild(leftChild);
     leftChild->setPosition(irr::core::vector3df(-1, 0, 0));
-
-    if (mainCamera)
-        smgr->setActiveCamera(mainCamera);
-    else
-        smgr->setActiveCamera(cam);
 
     return cam;
 }
